@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.loginMapper">
+	<insert id="memberWrite" parameterType="memberDTO">
+		insert into projectlogin (user_id, user_pw, name, nickname, email, token ) values (#{user_id}, #{user_pw}, #{name}, #{nickname}, #{email}, 10)
+	</insert>
+	
+	<insert id="memberKakao" parameterType="memberDTO">
+		insert into projectlogin (nickname, email, token) values (#{nickname}, #{email}, 10)
+	</insert>
+	
+	<select id="login" parameterType="java.util.Map" resultType="memberDTO">
+		select * from projectlogin where user_id=#{user_id} and user_pw=#{user_pw}
+	</select>
+	
+	<select id="memberNickCheck" parameterType="java.lang.String" resultType="memberDTO">
+		select * from projectlogin where nickname=#{nickname}
+	</select>
+	
+	<select id="userIdCheck" parameterType="java.lang.String" resultType="memberDTO">
+		select * from projectlogin where user_id=#{user_id}
+	</select>
+	
+</mapper>
